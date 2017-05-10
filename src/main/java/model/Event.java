@@ -13,6 +13,14 @@ public class Event {
     private EventCategory eventCategory;
     private Integer id;
 
+    public Event(String name, String description, Date eventDate, EventCategory eventCategory, Integer id) {
+        this.name = name;
+        this.description = description;
+        this.eventDate = eventDate;
+        this.eventCategory = eventCategory;
+        this.id = id;
+    }
+
 
     public static Date makeDateFromString(String dateString) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");

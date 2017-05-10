@@ -27,6 +27,14 @@ public class SqliteJDBCConnector {
                 "    id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
                 "    eventName VARCHAR NOT NULL,\n" +
                 "    description TEXT,\n" +
-                "    eventDate VARCHAR NOT NULL)" );
+                "    eventDate VARCHAR NOT NULL,\n" +
+                "    category_id INT,\n" +
+                "    CONSTRAINT events_categories_id_fk FOREIGN KEY (category_id) REFERENCES categories (id)\n" +
+                ");" );
+        statement.execute("CREATE TABLE IF NOT EXISTS categories \n" +
+                "(\n" +
+                "    id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "    name VARCHAR NOT NULL,\n" +
+                "    description TEXT)" );
     }
 }

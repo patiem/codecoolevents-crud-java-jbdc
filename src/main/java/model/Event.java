@@ -41,9 +41,9 @@ public class Event {
         return date;
     }
 
-    public static String simpleStringFromDate(Date date) {
+    public String simpleStringFromDate() {
         SimpleDateFormat formatter = new SimpleDateFormat( "dd-MM-yyyy");
-        return formatter.format(date);
+        return formatter.format(this.getEventDate());
     }
 
     public Boolean isEventAvailable() {

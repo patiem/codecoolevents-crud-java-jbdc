@@ -21,7 +21,7 @@ public class Event {
         this.id = id;
     }
 
-    public Event(String name, String description, String eventDate, EventCategory eventCategory, Integer id) {
+    public Event(String name, String description, String eventDate, EventCategory eventCategory) {
         this.name = name;
         this.description = description;
         this.eventDate = makeDateFromString(eventDate);

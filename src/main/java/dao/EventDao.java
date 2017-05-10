@@ -4,6 +4,7 @@ package dao;
 import model.Event;
 import model.EventCategory;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,6 +38,27 @@ public class EventDao {
 
         return events;
 
+    }
+
+    private List<Event> getEvents(PreparedStatement statement) throws SQLException {
+        List<Event> events = new ArrayList<Event>();
+        EventCategory category;
+        EventCategoryDao eventCategoryDao = new EventCategoryDao();
+
+        ResultSet rs = statement.executeQuery();
+        while(rs.next()) {
+            category = EventCategoryDao.find(rs.getInt("category_id"));
+            Event event = new Event(
+                    rs.getString("eventName"),
+                    rs.getString("description"),
+                    rs.getString("eventDate"),
+                    category);
+            );
+            event.setId(rs.getInt("id"));
+            events.add(event);
+        }
+
+        return events;
     }
 
 

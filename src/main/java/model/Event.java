@@ -5,19 +5,19 @@ import java.util.Date;
 
 public class Event {
 
-    private String eventName;
+    private String name;
     private String description;
     private Date eventDate;
     private EventCategory eventCategory;
-    private Integer  eventId;
+    private Integer id;
 
 
-    public String getEventName() {
-        return eventName;
+    public String getName() {
+        return name;
     }
 
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
+    public void setName(String eventName) {
+        this.name = eventName;
     }
 
     public String getDescription() {
@@ -44,11 +44,11 @@ public class Event {
         this.eventCategory = eventCategory;
     }
 
-    public Integer getEventId() {
-        return eventId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setEventId(Integer eventId) {
-        this.eventId = eventId;
+    public void setId(Integer eventId) {
+        this.id = eventId;
     }
 }

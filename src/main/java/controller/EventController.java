@@ -30,8 +30,15 @@ public class EventController {
 
     public static ModelAndView addNewEvent(Request req, Response res) {
         Map params = new HashMap<>();
-//        params.put("eventsList", events);
         return new ModelAndView(params, "product/add");
+    }
+
+    public static void saveNewEvent(Request req, Response res) {
+        System.out.println(req.queryParams("edate"));
+        EventCategory category = eventCategoryDao.find(1);
+        Event event = new Event(req.queryParams("ename"), req.queryParams("description"),
+                req.queryParams("edate"), category);
+        eventDao.add(event);
     }
 
     public static void main(String[] args) {

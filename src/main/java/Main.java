@@ -37,6 +37,15 @@ public class Main {
 
         get("/add", EventController::addNewEvent, new ThymeleafTemplateEngine());
 
+        post("/add", (req, res) -> {
+            EventController.saveNewEvent(req, res);
+            System.out.println("udalo sie");
+            res.redirect("/");
+            return "";
+        });
+
+
+
         // Equivalent with above
 //        get("/index", (Request req, Response res) -> {
 //            return new ThymeleafTemplateEngine().render( EventController.renderEvents(req, res) );

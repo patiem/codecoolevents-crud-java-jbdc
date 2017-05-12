@@ -12,16 +12,17 @@
 
 <div class="container">
     <h2>Add new event</h2>
-    <form method="post" action="" class="col-sm-4">
+    <!--<form action="#" th:action="@{add}" th:object="${event}" method="post" class="col-sm-4">-->
+    <form action="#" th:action="@{add}" method="post" class="col-sm-4">
+
         <div class="form-group">
             <label for="ename" class="sr-only">Name</label>
             <input type="text" id="ename" name="ename" class="form-control"
-                   placeholder="Event Name"
-                   required autofocus>
+                   th:field="*{ename}" placeholder="Event Name" required autofocus>
         </div>
         <div class="form-group">
             <label for="description" class="sr-only">Description</label>
-            <textarea row="5" id="description" name="description" class="form-control"
+            <textarea row="5" id="description" name="description" th:field="*{description}" class="form-control"
             placeholder="Description" required></textarea>
         </div>
         <div class="form-group">

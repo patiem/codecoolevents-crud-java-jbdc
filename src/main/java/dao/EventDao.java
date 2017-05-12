@@ -49,6 +49,16 @@ public class EventDao extends BaseDao {
     }
 
     public void remove(int id) {
+        try {
+            PreparedStatement statement = this.getConnection().prepareStatement(
+                    "DELETE FROM events WHERE id=?");
+            statement.setInt(1, id);
+            statement.execute();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

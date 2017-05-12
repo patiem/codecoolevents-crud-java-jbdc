@@ -43,7 +43,11 @@ public class Main {
             return "";
         });
 
-
+        post("/remove", (req, res) -> {
+            EventController.deleteEvent(req, res);
+            res.redirect("/");
+            return "";
+        });
 
         // Equivalent with above
 //        get("/index", (Request req, Response res) -> {

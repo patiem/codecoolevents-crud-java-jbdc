@@ -22,7 +22,8 @@
 <!--</div>-->
 
 <div class="container">
-    <h2>Codecool Events</h2>
+    <h2>Codecool Events</h2> <a href="" th:href="@{add}" class="btn btn-lg btn-primary btn-right">
+    Add new event</a>
     <table class="table">
         <thead>
         <tr>
@@ -42,7 +43,11 @@
                 <td th:text="${event.simpleStringFromDate()}"></td>
                 <td th:text="${event.getEventCategory().getName()}"></td>
                 <td>Update</td>
-                <td>Remove</td>
+                <td>
+                    <form action="#" th:action="@{remove}" method="post" class="col-sm-4">
+                        <button name="delete" th:value="${event.getId()}" class="btn btn-sm btn-primary " type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         </th:block>
         </tbody>

@@ -41,6 +41,11 @@ public class EventController {
         eventDao.add(event);
     }
 
+    public static void deleteEvent(Request req, Response res) {
+        Integer id = Integer.parseInt(req.queryParams("delete"));
+        eventDao.remove(id);
+    }
+
     public static void main(String[] args) {
         EventCategory eventCategory = eventCategoryDao.find(1);
         System.out.println(eventCategory);

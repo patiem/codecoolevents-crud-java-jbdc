@@ -13,9 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by rafalstepien on 28/04/2017.
- */
+
 public class EventController {
 
     static EventCategoryDao eventCategoryDao = new EventCategoryDao();
@@ -36,7 +34,8 @@ public class EventController {
 
     public static void saveNewEvent(Request req, Response res) {
         Date date = Event.makeDateFromForm(req.queryParams("edate"));
-        EventCategory category = eventCategoryDao.find(1);
+        System.out.println();
+        EventCategory category = eventCategoryDao.find(Integer.parseInt(req.queryParams("category")));
         Event event = new Event(req.queryParams("ename"), req.queryParams("description"),
                 date, category);
         eventDao.add(event);

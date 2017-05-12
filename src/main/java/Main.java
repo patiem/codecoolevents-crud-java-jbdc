@@ -39,7 +39,6 @@ public class Main {
 
         post("/add", (req, res) -> {
             EventController.saveNewEvent(req, res);
-            System.out.println("udalo sie");
             res.redirect("/");
             return "";
         });

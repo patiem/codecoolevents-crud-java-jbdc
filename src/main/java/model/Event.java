@@ -60,7 +60,6 @@ public class Event {
 
     public String simpleStringFromDate() {
         SimpleDateFormat formatter = new SimpleDateFormat( "dd-MM-yyyy");
-        System.out.println(formatter.format(this.getEventDate()));
         return formatter.format(this.getEventDate());
     }
 

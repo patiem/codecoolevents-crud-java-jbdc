@@ -14,6 +14,7 @@ import java.util.List;
 
 public class EventDao extends BaseDao {
 
+
     public void add(Event event) {
         try {
             PreparedStatement statement = this.getConnection().prepareStatement("INSERT INTO events" +
@@ -76,6 +77,7 @@ public class EventDao extends BaseDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return events;
     }
 
@@ -100,5 +102,8 @@ public class EventDao extends BaseDao {
         return events;
     }
 
+    public static void main(String[] args) {
+
+    }
 
 }

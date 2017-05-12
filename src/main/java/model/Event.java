@@ -26,7 +26,6 @@ public class Event {
         this.description = description;
         this.eventDate = makeDateFromString(eventDate);
         this.eventCategory = eventCategory;
-        this.id = id;
     }
 
 
@@ -93,5 +92,16 @@ public class Event {
 
     public void setId(Integer eventId) {
         this.id = eventId;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", eventDate=" + eventDate +
+                ", eventCategory=" + eventCategory +
+                ", id=" + id +
+                '}';
     }
 }

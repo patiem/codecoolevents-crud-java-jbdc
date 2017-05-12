@@ -37,5 +37,12 @@ public class EventCategory {
         this.id = id;
     }
 
-
+    @Override
+    public String toString() {
+        return "EventCategory{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

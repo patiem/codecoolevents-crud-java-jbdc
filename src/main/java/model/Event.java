@@ -63,6 +63,11 @@ public class Event {
         return formatter.format(this.getEventDate());
     }
 
+    public String simpleStringDate() {
+        SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd");
+        return formatter.format(this.getEventDate());
+    }
+
     public Boolean isEventAvailable() {
         Date today = new Date();
         if (today.before(this.getEventDate())) {

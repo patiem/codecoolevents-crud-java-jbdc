@@ -53,4 +53,14 @@ public class EventController {
         eventDao.add(event);
 
     }
+
+    public static ModelAndView updateEvents(Request req, Response res) {
+        Map params = new HashMap<>();
+        Integer id = Integer.parseInt(req.params(":id"));
+        Event event = eventDao.find(id);
+        params.put("id", id);
+        params.put("event", event);
+        System.out.println(event.simpleStringDate());
+        return new ModelAndView(params, "product/update");
+    }
 }

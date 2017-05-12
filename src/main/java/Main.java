@@ -49,6 +49,21 @@ public class Main {
             return "";
         });
 
+//        get("/update/:id", (req, res) -> {
+//            return new ThymeleafTemplateEngine().render( EventController.updateEvents(req, res) );
+//        });
+
+        get("/update/:id", (req, res) -> {
+            return new ThymeleafTemplateEngine().render( EventController.updateEvents(req, res) );
+        });
+
+        post("/update/:id", (req, res) -> {
+            EventController.saveNewEvent(req, res);
+            res.redirect("/");
+            return "";
+        });
+
+
         // Equivalent with above
 //        get("/index", (Request req, Response res) -> {
 //            return new ThymeleafTemplateEngine().render( EventController.renderEvents(req, res) );

@@ -42,7 +42,12 @@
                 <td th:text="${event.getName()}"></td>
                 <td th:text="${event.simpleStringFromDate()}"></td>
                 <td th:text="${event.getEventCategory().getName()}"></td>
-                <td>Update</td>
+                <td>
+                    <!--<form action="#" th:action="@{update/} + ${event.getId()}" method="get" class="col-sm-4">-->
+                        <!--<button class="btn btn-sm btn-primary " type="submit">Update</button>-->
+                    <!--</form>-->
+                    <a href="" th:href="@{update/} + ${event.getId()}" class="btn btn-sm btn-primary">Update</a>
+                </td>
                 <td>
                     <form action="#" th:action="@{remove}" method="post" class="col-sm-4">
                         <button name="delete" th:value="${event.getId()}" class="btn btn-sm btn-primary " type="submit">Delete</button>

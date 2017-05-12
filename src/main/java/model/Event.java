@@ -28,6 +28,13 @@ public class Event {
         this.eventCategory = eventCategory;
     }
 
+    public Event(String name, String description, Date eventDate, EventCategory eventCategory) {
+        this.name = name;
+        this.description = description;
+        this.eventDate = eventDate;
+        this.eventCategory = eventCategory;
+    }
+
 
     public static Date makeDateFromString(String dateString) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -40,8 +47,20 @@ public class Event {
         return date;
     }
 
+    public static Date makeDateFromForm(String dateString) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = formatter.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
     public String simpleStringFromDate() {
         SimpleDateFormat formatter = new SimpleDateFormat( "dd-MM-yyyy");
+        System.out.println(formatter.format(this.getEventDate()));
         return formatter.format(this.getEventDate());
     }
 

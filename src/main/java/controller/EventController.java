@@ -8,6 +8,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,10 +35,10 @@ public class EventController {
     }
 
     public static void saveNewEvent(Request req, Response res) {
-        System.out.println(req.queryParams("edate"));
+        Date date = Event.makeDateFromForm(req.queryParams("edate"));
         EventCategory category = eventCategoryDao.find(1);
         Event event = new Event(req.queryParams("ename"), req.queryParams("description"),
-                req.queryParams("edate"), category);
+                date, category);
         eventDao.add(event);
     }
 

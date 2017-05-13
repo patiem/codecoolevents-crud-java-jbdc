@@ -54,11 +54,11 @@ public class Main {
 //        });
 
         get("/update/:id", (req, res) -> {
-            return new ThymeleafTemplateEngine().render( EventController.updateEvents(req, res) );
+            return new ThymeleafTemplateEngine().render( EventController.updateEventRender(req, res) );
         });
 
         post("/update/:id", (req, res) -> {
-            EventController.saveNewEvent(req, res);
+            EventController.updateEvent(req, res);
             res.redirect("/");
             return "";
         });

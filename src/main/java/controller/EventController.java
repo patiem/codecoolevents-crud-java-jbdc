@@ -34,7 +34,6 @@ public class EventController {
 
     public static void saveNewEvent(Request req, Response res) {
         Date date = Event.makeDateFromForm(req.queryParams("edate"));
-        System.out.println();
         EventCategory category = eventCategoryDao.find(Integer.parseInt(req.queryParams("category")));
         Event event = new Event(req.queryParams("ename"), req.queryParams("description"),
                 date, category);
@@ -46,15 +45,7 @@ public class EventController {
         eventDao.remove(id);
     }
 
-    public static void main(String[] args) {
-        EventCategory eventCategory = eventCategoryDao.find(1);
-        System.out.println(eventCategory);
-        Event event = new Event("Cinema", "Films and beers", "14-05-2017", eventCategory );
-        eventDao.add(event);
-
-    }
-
-    public static ModelAndView updateEvents(Request req, Response res) {
+    public static ModelAndView updateEventRender(Request req, Response res) {
         Map params = new HashMap<>();
         Integer id = Integer.parseInt(req.params(":id"));
         Event event = eventDao.find(id);
@@ -62,5 +53,21 @@ public class EventController {
         params.put("event", event);
         System.out.println(event.simpleStringDate());
         return new ModelAndView(params, "product/update");
+    }
+
+
+    public static void updateEvent(Request req, Response res) {
+        Integer id = Integer.parseInt(req.queryParams("eventId"));
+        Event event = eventDao.find(id);
+        event.setEventCategory(eventCategoryDao.find(Integer.parseInt(req.queryParams("category"))));
+        event.setEventDate(Event.makeDateFromForm(req.queryParams("edate")));
+        event.setDescription(req.queryParams("description"));
+        event.setName(req.queryParams("ename"));
+        eventDao.update(event);
+    }
+
+    public static void updateEvent2(Request req, Response res) {
+        eventDao.update(Integer.parseInt(req.queryParams("eventId")), req.queryParams("ename"),
+                req.queryParams("description"), req.queryParams("edate"), Integer.parseInt(req.queryParams("category")));
     }
 }

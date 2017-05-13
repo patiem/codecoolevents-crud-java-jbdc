@@ -112,8 +112,40 @@ public class EventDao extends BaseDao {
         return events;
     }
 
-    public static void main(String[] args) {
 
+    public void update(Event event) {
+        try {
+            PreparedStatement statement = this.getConnection().prepareStatement(
+                    "UPDATE events SET eventName=?, description=?, eventDate=?, category_id=? " +
+                            "WHERE id = ?");
+            statement.setString(1, event.getName());
+            statement.setString(2, event.getDescription());
+            statement.setString(3, event.simpleStringFromDate());
+            statement.setInt(4, event.getEventCategory().getId());
+            statement.setInt(5, event.getId());
+
+            statement.execute();
+
+        } catch (SQLException e ) {
+            e.printStackTrace();
+        }
     }
 
+    public void update(int eventId, String ename, String description, String edate, int category) {
+        try {
+            PreparedStatement statement = this.getConnection().prepareStatement(
+                    "UPDATE events SET eventName=?, description=?, eventDate=?, category_id=? " +
+                            "WHERE id = ?");
+            statement.setString(1, ename);
+            statement.setString(2, description);
+            statement.setString(3, edate);
+            statement.setString(4, edate);
+            statement.setInt(5, eventId);
+
+            statement.execute();
+
+        } catch (SQLException e ) {
+            e.printStackTrace();
+        }
+    }
 }

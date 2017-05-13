@@ -41,6 +41,12 @@
             </select>
         </div>
 
+        <div class="form-group">
+            <label for="elink" class="sr-only">Name</label>
+            <input type="text" id="elink" name="elink" class="form-control"
+                   th:value="${event.getLink()}" placeholder="Event external link">
+        </div>
+
         <button name="eventId" th:value="${event.getId()}" class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
     </form>
 </div>

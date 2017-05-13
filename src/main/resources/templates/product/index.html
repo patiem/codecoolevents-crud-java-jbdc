@@ -61,7 +61,7 @@
                         <p th:text="${event.getDescription()}"></p>
                         <p></p>
                         <h6>External link:</h6>
-                        <a href="http://www.google.pl" target="_blank">Open in new page</a>
+                        <a th:href="${event.getLink()}" target="_blank">Open in new page</a>
                     </div>
                     <div class="modal-footer">
                         <h6>Event category:</h6>

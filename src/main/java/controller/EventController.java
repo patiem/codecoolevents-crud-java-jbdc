@@ -37,6 +37,9 @@ public class EventController {
         EventCategory category = eventCategoryDao.find(Integer.parseInt(req.queryParams("category")));
         Event event = new Event(req.queryParams("ename"), req.queryParams("description"),
                 date, category);
+        if (!req.queryParams("elink").equals(null)) {
+            event.setLink(req.queryParams("elink"));
+        }
         eventDao.add(event);
     }
 
@@ -63,6 +66,7 @@ public class EventController {
         event.setEventDate(Event.makeDateFromForm(req.queryParams("edate")));
         event.setDescription(req.queryParams("description"));
         event.setName(req.queryParams("ename"));
+        event.setLink(req.queryParams("elink"));
         eventDao.update(event);
     }
 

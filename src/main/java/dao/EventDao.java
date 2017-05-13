@@ -18,12 +18,14 @@ public class EventDao extends BaseDao {
     public void add(Event event) {
         try {
             PreparedStatement statement = this.getConnection().prepareStatement("INSERT INTO events" +
-                    "(eventName, description, eventDate, category_id)" +
-                    "VALUES (?, ?, ?, ?)");
+                    "(eventName, description, eventDate, category_id, link)" +
+                    "VALUES (?, ?, ?, ?, ?)");
             statement.setString(1, event.getName());
             statement.setString(2, event.getDescription());
             statement.setString(3, event.simpleStringFromDate());
             statement.setInt(4, event.getEventCategory().getId());
+            statement.setString(5, event.getLink());
+
             statement.execute();
 
         } catch (SQLException e ) {
@@ -106,6 +108,9 @@ public class EventDao extends BaseDao {
                     rs.getString("eventDate"),
                     category);
             event.setId(rs.getInt("id"));
+            String link = rs.getString("link");
+            event.setLink(link);
+            System.out.println(rs.getString("link"));
             events.add(event);
         }
 
@@ -116,13 +121,14 @@ public class EventDao extends BaseDao {
     public void update(Event event) {
         try {
             PreparedStatement statement = this.getConnection().prepareStatement(
-                    "UPDATE events SET eventName=?, description=?, eventDate=?, category_id=? " +
+                    "UPDATE events SET eventName=?, description=?, eventDate=?, category_id=?, link=?" +
                             "WHERE id = ?");
             statement.setString(1, event.getName());
             statement.setString(2, event.getDescription());
             statement.setString(3, event.simpleStringFromDate());
             statement.setInt(4, event.getEventCategory().getId());
-            statement.setInt(5, event.getId());
+            statement.setString(5, event.getLink());
+            statement.setInt(6, event.getId());
 
             statement.execute();
 

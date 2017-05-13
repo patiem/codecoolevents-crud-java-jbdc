@@ -79,6 +79,13 @@ public class Event {
         }
     }
 
+    public Boolean hasLink() {
+        if (this.getLink() == null) {
+            return false;
+        }
+        return true;
+    }
+
     public String getName() {
         return name;
     }

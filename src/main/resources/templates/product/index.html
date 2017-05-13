@@ -51,21 +51,24 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h6>Event name:</h6>
-                        <h4 class="modal-title" th:text="${event.getName()}"></h4>
+                        <h3 class="modal-title" th:text="${event.getName()}"></h3>
                         <p></p>
                         <h6>Event date:</h6>
-                        <h5 class="modal-title" th:text="${event.simpleStringFromDate()}"></h5>
+                        <h4 class="modal-title" th:text="${event.simpleStringFromDate()}"></h4>
                     </div>
                     <div class="modal-body">
                         <h6>Event description:</h6>
-                        <p th:text="${event.getDescription()}"></p>
+                        <h3 th:text="${event.getDescription()}"></h3>
                         <p></p>
+
                         <h6>External link:</h6>
-                        <a th:href="${event.getLink()}" target="_blank">Open in new page</a>
+                        <h4><a th:href="${event.getLink()}" target="_blank" th:if="${event.hasLink()}">Open in new page</a>
+                        <p th:if="${!event.hasLink()}">No link to event</p></h4>
+
                     </div>
                     <div class="modal-footer">
                         <h6>Event category:</h6>
-                        <p th:text="${event.getEventCategory().getName()} + ' - ' + ${event.getEventCategory().getDescription()}"></p>
+                        <h3 th:text="${event.getEventCategory().getName()} + ' - ' + ${event.getEventCategory().getDescription()}"></h3>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>

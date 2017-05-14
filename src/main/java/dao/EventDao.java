@@ -112,6 +112,7 @@ public class EventDao extends BaseDao {
             event.setLink(link);
             events.add(event);
         }
+        events.sort((o1, o2) -> o1.getEventDate().compareTo(o2.getEventDate()));
 
         return events;
     }

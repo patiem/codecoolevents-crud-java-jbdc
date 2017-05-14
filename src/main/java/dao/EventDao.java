@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -98,19 +100,23 @@ public class EventDao extends BaseDao {
         List<Event> events = new ArrayList<Event>();
         EventCategory category;
         EventCategoryDao eventCategoryDao = new EventCategoryDao();
-
+        Date today = this.yesterday();
         ResultSet rs = statement.executeQuery();
         while(rs.next()) {
-            category = eventCategoryDao.find(rs.getInt("category_id"));
-            Event event = new Event(
-                    rs.getString("eventName"),
-                    rs.getString("description"),
-                    rs.getString("eventDate"),
-                    category);
-            event.setId(rs.getInt("id"));
-            String link = rs.getString("link");
-            event.setLink(link);
-            events.add(event);
+            Date date = Event.makeDateFromString(rs.getString("eventDate"));
+            if (!date.before(today)) {
+
+                category = eventCategoryDao.find(rs.getInt("category_id"));
+                Event event = new Event(
+                        rs.getString("eventName"),
+                        rs.getString("description"),
+                        rs.getString("eventDate"),
+                        category);
+                event.setId(rs.getInt("id"));
+                String link = rs.getString("link");
+                event.setLink(link);
+                events.add(event);
+            }
         }
         events.sort((o1, o2) -> o1.getEventDate().compareTo(o2.getEventDate()));
 
@@ -153,5 +159,11 @@ public class EventDao extends BaseDao {
         } catch (SQLException e ) {
             e.printStackTrace();
         }
+    }
+
+    private Date yesterday() {
+        final Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        return cal.getTime();
     }
 }

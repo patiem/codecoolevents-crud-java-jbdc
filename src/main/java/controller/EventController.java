@@ -27,6 +27,15 @@ public class EventController {
         return new ModelAndView(params, "product/index");
     }
 
+    public static ModelAndView renderEventsByCategory(Request req, Response res) {
+        String categoryName = req.params(":category");
+        EventCategory category = eventCategoryDao.getByName(categoryName);
+        List<Event> events = eventDao.getBy(category);
+        Map params = new HashMap<>();
+        params.put("eventsList", events);
+        return new ModelAndView(params, "product/index");
+    }
+
     public static ModelAndView addNewEvent(Request req, Response res) {
         Map params = new HashMap<>();
         return new ModelAndView(params, "product/add");

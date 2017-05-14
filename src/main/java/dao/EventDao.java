@@ -110,7 +110,6 @@ public class EventDao extends BaseDao {
             event.setId(rs.getInt("id"));
             String link = rs.getString("link");
             event.setLink(link);
-            System.out.println(rs.getString("link"));
             events.add(event);
         }
 

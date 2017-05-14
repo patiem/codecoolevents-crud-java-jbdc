@@ -35,6 +35,8 @@ public class Main {
         // Always add generic routes to the end
         get("/", EventController::renderEvents, new ThymeleafTemplateEngine());
 
+        get("/show/:category", EventController::renderEventsByCategory, new ThymeleafTemplateEngine());
+
         get("/add", EventController::addNewEvent, new ThymeleafTemplateEngine());
 
         post("/add", (req, res) -> {

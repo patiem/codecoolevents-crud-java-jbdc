@@ -1,9 +1,7 @@
 package dao;
 
-import model.Event;
 import model.EventCategory;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,7 +25,7 @@ public class EventCategoryDao {
 
             if (rs.next()) {
                 eventCategory = new EventCategory(
-                        rs.getString("name"),
+                        rs.getString("cname"),
                         rs.getString("description"),
                         rs.getInt("id")
                         );
@@ -54,4 +52,27 @@ public class EventCategoryDao {
     }
 
 
+    public EventCategory getByName(String categoryName) {
+        EventCategory eventCategory = null;
+
+        try {
+            Statement statement = SqliteJDBCConnector.connection().createStatement();
+            System.out.println(categoryName);
+
+            ResultSet rs = statement.executeQuery("SELECT * FROM categories WHERE cname = '" + categoryName + "'");
+            if (rs.next()) {
+                eventCategory = new EventCategory(
+                        rs.getString("cname"),
+                        rs.getString("description"),
+                        rs.getInt("id")
+                );
+            }
+
+            rs.close();
+        }catch (SQLException e) {
+            System.out.println();System.out.println("Connect to DB failed");
+            System.out.println(e.getMessage());
+        }
+        return eventCategory;
+    }
 }

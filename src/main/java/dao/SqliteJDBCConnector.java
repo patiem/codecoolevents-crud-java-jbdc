@@ -29,6 +29,7 @@ public class SqliteJDBCConnector {
                 "    description TEXT,\n" +
                 "    eventDate VARCHAR NOT NULL,\n" +
                 "    category_id INT,\n" +
+                "   link TEXT, \n" +
                 "    CONSTRAINT events_categories_id_fk FOREIGN KEY (category_id) REFERENCES categories (id)\n" +
                 ");" );
         statement.execute("CREATE TABLE IF NOT EXISTS categories \n" +

@@ -13,6 +13,18 @@
 <div class="container">
     <h2>Codecool Events</h2> <a href="" th:href="@{add}" class="btn btn-lg btn-primary btn-right">
     Add new event</a>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select category
+            <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li><a href="#" th:href="@{~/}">All events</a></li>
+            <li><a href="#" th:href="@{~/show/Python}">Python</a></li>
+            <li><a href="#" th:href="@{~/show/Java}">Java</a></li>
+            <li><a href="#" th:href="@{~/show/Culture}">Culture</a></li>
+        </ul>
+    </div>
+    Try it Yourself »
+
     <table class="table">
         <thead>
         <tr>
